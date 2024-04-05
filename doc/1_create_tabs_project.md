@@ -1,4 +1,4 @@
-# 測試產生 StandAlone Tabs 專案
+# 產生 ionic StandAlone Tabs 專案
 
 ```
 cd ~/github/ionic7_demo/src
