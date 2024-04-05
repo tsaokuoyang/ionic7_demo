@@ -1,0 +1,7 @@
+{
+  "name": "aTabs7",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular-standalone"
+}
