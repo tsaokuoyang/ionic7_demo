@@ -166,15 +166,35 @@ cd testApp
 ionic cordova platform add android@12
 ```
 
-## 在開發過程中測試 Plugin
+## 將 Plugin 安裝到 App 中
+
+### 安裝剛剛產生的 ionic plugin api 部分
+
+產生 package.json:
+```
+cd ../awesome-cordova-plugins/dist/@awesome-cordova-plugins/plugins/tensorflow-lite
+npm init
+```
+
+安裝到 App 中
+```
+cd ~/App/github/ionic7_demo/src/plugins/testApp
+npm install ../awesome-cordova-plugins/dist/@awesome-cordova-plugins/plugins/tensorflow-lite
+```
+
+### 安裝 Cordova Plugin 部分 ( 在開發過程中測試 Plugin )
 
 在開發過程中手動測試插件最簡單的方法
 是照常建立 Cordova 應用程式
 並使用以下--link 選項新增插件：
 
 ```
-ionic cordova plugin add ../plugins/awesome-cordova-plugins/dist/@awesome-cordova-plugins/plugins/tensorflow-lite --link
+ionic cordova plugin add ../cordova-plugin-tensorflow-lite --link
 ```
 
 這樣會將建立一個符號連結，而不是複製 Plugin 檔案，
 這使您能夠直接在 App 中直接以原生環境修改 Plugin 程式碼。
+
+## App 中呼叫 Plugin
+
+### 程式
