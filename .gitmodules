@@ -1,3 +1,0 @@
-[submodule "src/plugins/awesome-cordova-plugins"]
-	path = src/plugins/awesome-cordova-plugins
-	url = https://github.com/danielsogl/awesome-cordova-plugins

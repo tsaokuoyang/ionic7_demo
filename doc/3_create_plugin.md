@@ -146,7 +146,7 @@ npm run build
 ## 產生測試用的 ionic StandAlone Tabs 專案
 
 ```
-cd ./src/plugins
+cd ../
 ionic start testApp tabs --type=angular --cordova
 ```
 
