@@ -14,7 +14,7 @@ sudo npm i -g plugman
 
 ```
 cd ./src/plugins
-plugman create --name HelloWorldPlugin --plugin_id "cordova-hello-world-plugin" --plugin_version 0.0.1
+plugman create --name HelloWorldPlugin --plugin_id "cordova.plugin.hello_world" --plugin_version 0.0.1
 ```
 
 ## 加上 platform android
@@ -42,7 +42,7 @@ sudo plugman createpackagejson .
 EACCES: permission denied, open '/usr/lib/node_modules/plugman/node_modules/cordova-lib/src/plugman/defaults.json'
 (base) yang:HelloWorldPlugin$ sudo plugman createpackagejson .
 [sudo] password for yang:
-name: (cordova-hello-world-plugin)
+name: (cordova.plugin.hello_world)
 version: (0.0.1)
 description: HelloWorld Plugin
 git repository:
@@ -51,11 +51,11 @@ license: (ISC)
 About to write to ./src/plugins/HelloWorldPlugin/package.json:
 
 {
-  "name": "cordova-hello-world-plugin",
+  "name": "cordova.plugin.hello_world",
   "version": "0.0.1",
   "description": "HelloWorld Plugin",
   "cordova": {
-    "id": "cordova-hello-world-plugin",
+    "id": "cordova.plugin.hello_world",
     "platforms": [
       "android"
     ]
@@ -70,6 +70,54 @@ About to write to ./src/plugins/HelloWorldPlugin/package.json:
 
 
 Is this OK? (yes)
+
+```
+
+相關 android native java code :
+
+```
+package cordova.plugin.hello_world;
+
+import android.widget.Toast;
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CallbackContext;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class HelloWorldPlugin extends CordovaPlugin {
+
+    @Override
+    public boolean execute(
+                           String action,
+                           JSONArray args,
+                           CallbackContext callbackContext
+                          ) throws JSONException {
+       if(action.equals("nativeToast")){
+           nativeToast();
+        }
+        return false;
+    }
+
+	/*
+    private void coolMethod(String message, CallbackContext callbackContext) {
+        if (message != null && message.length() > 0) {
+            callbackContext.success(message);
+        } else {
+            callbackContext.error("Expected one non-empty string argument.");
+        }
+    }
+	*/
+    public void nativeToast(){
+      Toast.makeText(
+                      webView.getContext(),
+                      "Hello World Cordova Plugin",
+                      Toast.LENGTH_SHORT)
+                      .show();
+   }
+
+}
 
 ```
 
@@ -112,7 +160,7 @@ import { Observable } from 'rxjs';
 
 @Plugin({
   pluginName: 'HelloWorld',
-  plugin: 'cordova.hello_world.plugin', // npm package name, example: cordova-plugin-camera
+  plugin: 'cordova.plugin.hello_world', // npm package name, example: cordova-plugin-camera
   pluginRef: 'HelloWorld', // the variable reference to call the plugin, example: navigator.geolocation
   repo: '', // the github repository URL for the plugin
   install: '', // OPTIONAL install command, in case the plugin requires variables
@@ -228,7 +276,7 @@ npm install ../awesome-cordova-plugins/dist/@awesome-cordova-plugins/plugins/hel
 #### 移除方式
 
 ```
-ionic cordova plugin rm cordova-hello-world-plugin
+ionic cordova plugin rm cordova.plugin.hello_world
 npm uninstall hello-world
 
 ```
