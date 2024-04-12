@@ -189,7 +189,7 @@ npm install ../awesome-cordova-plugins/dist/@awesome-cordova-plugins/plugins/ten
 並使用以下--link 選項新增插件：
 
 ```
-ionic cordova plugin add ../cordova-plugin-tensorflow-lite --link
+cordova plugin add ../cordova-plugin-tensorflow-lite --link
 ```
 
 這樣會將建立一個符號連結，而不是複製 Plugin 檔案，
