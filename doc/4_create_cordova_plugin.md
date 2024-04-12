@@ -2,6 +2,8 @@
 
 參考: [5 分鐘創建 Cordova Plugin 教學，超完整手把手開發環境範例](https://www.blogbrb.com/posts/skillshare/create-cordova-plugin-5-minutes/)
 
+[Cordova Custom Plugin easy than expected with ionic wrapper](https://medium.com/@martinchuka/cordova-custom-plugin-easy-than-expected-with-ionic-wrapper-51d8c8bb082c)
+
 ```
 sudo npm i -g plugman
 ```
