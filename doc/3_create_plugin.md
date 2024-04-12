@@ -11,10 +11,9 @@ cd ./src/plugins
 git clone https://github.com/danielsogl/awesome-cordova-plugins
 ```
 
-移除掉 .git 以及其他 plugins(若不移除, 他會全部重新編譯, 比較耗時),
+移除掉其他 plugins(若不移除, 他會全部重新編譯, 比較耗時),
 
 ```
-rm -Rf ./awesome-cordova-plugins/.git
 rm -Rf ./awesome-cordova-plugins/src/@awesome-cordova-plugins/plugins/*
 ```
 
