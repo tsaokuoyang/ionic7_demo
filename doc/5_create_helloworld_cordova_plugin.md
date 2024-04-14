@@ -14,7 +14,7 @@ sudo npm i -g plugman
 
 ```
 cd ./src/plugins
-plugman create --name HelloWorldPlugin --plugin_id "cordova.plugin.hello_world" --plugin_version 0.0.1
+plugman create --name HelloWorldPlugin --plugin_id "cordova-plugin-hello_world" --plugin_version 0.0.1
 ```
 
 ## 加上 platform android
@@ -42,7 +42,7 @@ sudo plugman createpackagejson .
 EACCES: permission denied, open '/usr/lib/node_modules/plugman/node_modules/cordova-lib/src/plugman/defaults.json'
 (base) yang:HelloWorldPlugin$ sudo plugman createpackagejson .
 [sudo] password for yang:
-name: (cordova.plugin.hello_world)
+name: (cordova-plugin-hello_world)
 version: (0.0.1)
 description: HelloWorld Plugin
 git repository:
@@ -51,11 +51,11 @@ license: (ISC)
 About to write to ./src/plugins/HelloWorldPlugin/package.json:
 
 {
-  "name": "cordova.plugin.hello_world",
+  "name": "cordova-plugin-hello_world",
   "version": "0.0.1",
   "description": "HelloWorld Plugin",
   "cordova": {
-    "id": "cordova.plugin.hello_world",
+    "id": "cordova-plugin-hello_world",
     "platforms": [
       "android"
     ]
@@ -86,6 +86,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * This class echoes a string called from JavaScript.
+ */
 public class HelloWorldPlugin extends CordovaPlugin {
 
     @Override
@@ -118,7 +121,6 @@ public class HelloWorldPlugin extends CordovaPlugin {
    }
 
 }
-
 ```
 
 ## 修改 www 底下的 HelloWorldPlugin.js
@@ -136,7 +138,7 @@ exports.nativeToast = function (arg0, success, error) {
 	 exec(
 		success,
 		error,
-	   'HelloWorld',
+	   'HelloWorldPlugin',
 	   'nativeToast',
 		[arg0]
 		);
@@ -159,8 +161,8 @@ import { Plugin, Cordova, CordovaProperty, CordovaInstance, InstanceProperty, Aw
 import { Observable } from 'rxjs';
 
 @Plugin({
-  pluginName: 'HelloWorld',
-  plugin: 'cordova.plugin.hello_world', // npm package name, example: cordova-plugin-camera
+  pluginName: 'HelloWorldPlugin',
+  plugin: 'cordova-plugin-hello_world', // npm package name, example: cordova-plugin-camera
   pluginRef: 'HelloWorld', // the variable reference to call the plugin, example: navigator.geolocation
   repo: '', // the github repository URL for the plugin
   install: '', // OPTIONAL install command, in case the plugin requires variables
@@ -270,13 +272,14 @@ ionic cordova platform add android@12
 ```
 cd ~/App/github/ionic7_demo/src/plugins/testApp
 ionic cordova plugin add ../HelloWorldPlugin
+npm install @awesome-cordova-plugins/core
 npm install ../awesome-cordova-plugins/dist/@awesome-cordova-plugins/plugins/hello-world
 ```
 
 #### 移除方式
 
 ```
-ionic cordova plugin rm cordova.plugin.hello_world
+ionic cordova plugin rm cordova-plugin-hello_world
 npm uninstall hello-world
 
 ```
