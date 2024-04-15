@@ -1,0 +1,17 @@
+{
+  "name": "cordova-plugin-hello_world",
+  "version": "0.0.1",
+  "description": "HelloWorld Plugin Test",
+  "cordova": {
+    "id": "cordova-plugin-hello_world",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Yang",
+  "license": "ISC"
+}

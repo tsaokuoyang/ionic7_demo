@@ -20,7 +20,7 @@ plugman create --name HelloWorldPlugin --plugin_id "cordova-plugin-hello_world" 
 ## 加上 platform android
 
 cd 到 cordova plugin 專案目錄下，
-並加上 android 平台支持
+並加上 android 平台支援
 
 ```
 cd HelloWorldPlugin
@@ -192,12 +192,15 @@ export class HelloWorld extends AwesomeCordovaNativePlugin {
 cd ./src/plugins/awesome-cordova-plugins
 
 npm run build
+
+//Copy the package(s) you created/modified to your app's node_modules under the @ionic-native directory.
+cp -R dist/@awesome-cordova-plugins/plugins/hello-world ../testApp/node_modules/@awesome-cordova-plugins/
 ```
 
 ### 進入 dist 產生 package.json
 
 ```
-cd awesome-cordova-plugins/dist/@awesome-cordova-plugins/plugins/hello-world
+cd ./dist/@awesome-cordova-plugins/plugins/hello-world
 npm init
 ```
 
