@@ -20,7 +20,7 @@ import { Observable } from 'rxjs';
  *
  * @usage
  * ```typescript
- * import { HelloWorld } from '@awesome-cordova-plugins/hello-world';
+ * import { HelloWorld } from '@awesome-cordova-plugins/hello-world/ngx';
  *
  *
  * constructor(private helloWorld: HelloWorld) { }
@@ -28,7 +28,7 @@ import { Observable } from 'rxjs';
  * ...
  *
  *
- * this.helloWorld.functionName('Hello', 123)
+ * this.helloWorld.nativeToast('Hello', 123)
  *   .then((res: any) => console.log(res))
  *   .catch((error: any) => console.error(error));
  *
@@ -44,7 +44,7 @@ import { Observable } from 'rxjs';
   platforms: ['Android'] // Array of platforms supported, example: ['Android', 'iOS']
 })
 @Injectable()
-export class HelloWorld extends AwesomeCordovaNativePlugin {
+export class HelloWorldPlugin extends AwesomeCordovaNativePlugin {
 
   /**
    * This function does something
