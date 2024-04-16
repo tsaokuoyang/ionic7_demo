@@ -49,6 +49,7 @@
     "cordova-plugin-androidx-adapter": "^1.1.3",
     "cordova-plugin-device": "2.0.2",
     "cordova-plugin-hello_world": "file:../HelloWorldPlugin",
+    "cordova-plugin-hello_world_k": "file:../HelloWorldKPlugin",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^5.0.0",
     "cordova-plugin-splashscreen": "5.0.2",
@@ -76,7 +77,8 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-androidx": {},
       "cordova-plugin-androidx-adapter": {},
-      "cordova-plugin-hello_world": {}
+      "cordova-plugin-hello_world": {},
+      "cordova-plugin-hello_world_k": {}
     },
     "platforms": [
       "android"

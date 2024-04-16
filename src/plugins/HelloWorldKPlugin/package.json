@@ -1,0 +1,17 @@
+{
+  "name": "cordova-plugin-hello_world_k",
+  "version": "0.0.1",
+  "description": "HelloWorld Plugin using Kotlin",
+  "cordova": {
+    "id": "cordova-plugin-hello_world_k",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Yang",
+  "license": "ISC"
+}

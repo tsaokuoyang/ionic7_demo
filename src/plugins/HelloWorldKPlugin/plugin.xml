@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-hello_world_k" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+	<name>HelloWorldKPlugin</name>
+	<js-module name="HelloWorldKPlugin" src="www/HelloWorldKPlugin.js">
+		<clobbers target="cordova.plugins.HelloWorldKPlugin"/>
+	</js-module>
+	<platform name="android">
+		<config-file parent="/*" target="res/xml/config.xml">
+    		<preference name="GradlePluginKotlinEnabled" value="true" />
+			<feature name="HelloWorldKPlugin">
+				<param name="android-package" value="cordova.plugin.hello_world_k.HelloWorldKPlugin"/>
+			</feature>
+		</config-file>
+		<config-file parent="/*" target="AndroidManifest.xml"/>
+		<source-file src="src/android/HelloWorldKPlugin.kt" target-dir="java/cordova/plugin/hello_world_k/"/>
+	</platform>
+</plugin>

@@ -16,9 +16,9 @@ public class HelloWorldPlugin extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("nativeToast")) {
-            // String message = args.getString(0);
+            String message = args.getString(0);
             // this.coolMethod(message, callbackContext);
-            this.nativeToast();
+            this.nativeToast(message, callbackContext);
             return true;
         }
         return false;
@@ -32,10 +32,11 @@ public class HelloWorldPlugin extends CordovaPlugin {
         }
     }
 */
-    private void nativeToast() {
+    private void nativeToast(String message, CallbackContext callbackContext) {
       Toast.makeText(
                       webView.getContext(),
-                      "Hello World Cordova Plugin",
+                      // "Hello World Cordova Plugin",
+                      message,
                       Toast.LENGTH_SHORT)
                       .show();
     }

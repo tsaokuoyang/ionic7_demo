@@ -11,6 +11,6 @@
 			</feature>
 		</config-file>
 		<config-file parent="/*" target="AndroidManifest.xml"/>
-		<source-file src="src/android/HelloWorldPlugin.java" target-dir="src/cordova/plugin/hello_world/HelloWorldPlugin"/>
+		<source-file src="src/android/HelloWorldPlugin.java" target-dir="src/cordova/plugin/hello_world"/>
 	</platform>
 </plugin>

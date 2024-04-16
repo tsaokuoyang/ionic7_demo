@@ -1,4 +1,4 @@
-# Cordova Plugin Native 部分
+# Cordova Plugin Native 部分 - Kotlin
 
 參考: [5 分鐘創建 Cordova Plugin 教學，超完整手把手開發環境範例](https://www.blogbrb.com/posts/skillshare/create-cordova-plugin-5-minutes/)
 
@@ -14,7 +14,7 @@ sudo npm i -g plugman
 
 ```
 cd ./src/plugins
-plugman create --name HelloWorldPlugin --plugin_id "cordova-plugin-hello_world" --plugin_version 0.0.1
+plugman create --name HelloWorldKPlugin --plugin_id "cordova-plugin-hello_world_k" --plugin_version 0.0.1
 ```
 
 ## 加上 platform android
@@ -23,7 +23,7 @@ cd 到 cordova plugin 專案目錄下，
 並加上 android 平台支援
 
 ```
-cd HelloWorldPlugin
+cd HelloWorldKPlugin
 plugman platform add --platform_name android
 ```
 
@@ -35,48 +35,10 @@ plugman platform add --platform_name android
 sudo plugman createpackagejson .
 ```
 
-實際狀況:
+相關 android native kotlin code : HelloWorldKPlugin.kt
 
 ```
-(base) yang:HelloWorldPlugin$ plugman createpackagejson .
-EACCES: permission denied, open '/usr/lib/node_modules/plugman/node_modules/cordova-lib/src/plugman/defaults.json'
-(base) yang:HelloWorldPlugin$ sudo plugman createpackagejson .
-[sudo] password for yang:
-name: (cordova-plugin-hello_world)
-version: (0.0.1)
-description: HelloWorld Plugin
-git repository:
-author: Yang
-license: (ISC)
-About to write to ./src/plugins/HelloWorldPlugin/package.json:
-
-{
-  "name": "cordova-plugin-hello_world",
-  "version": "0.0.1",
-  "description": "HelloWorld Plugin",
-  "cordova": {
-    "id": "cordova-plugin-hello_world",
-    "platforms": [
-      "android"
-    ]
-  },
-  "keywords": [
-    "ecosystem:cordova",
-    "cordova-android"
-  ],
-  "author": "Yang",
-  "license": "ISC"
-}
-
-
-Is this OK? (yes)
-
-```
-
-相關 android native java code :
-
-```
-package cordova.plugin.hello_world;
+package cordova.plugin.hello_world_k;
 
 import android.widget.Toast;
 import org.apache.cordova.CordovaPlugin;
@@ -89,49 +51,61 @@ import org.json.JSONObject;
 /**
  * This class echoes a string called from JavaScript.
  */
-public class HelloWorldPlugin extends CordovaPlugin {
+public class HelloWorldKPlugin : CordovaPlugin {
 
-    @Override
-    public boolean execute(
-                           String action,
-                           JSONArray args,
-                           CallbackContext callbackContext
-                          ) throws JSONException {
-       if(action.equals("nativeToast")){
-            String message = args.getString(0);
-            this.nativeToast(message, callbackContext);
+    override fun execute(action: String, args: JSONArray, callbackContext: CallbackContext): Boolean {
+        if (action == "nativeToast") {
+            try {
+                val message = args.getString(0)
+                nativeToast(message, callbackContext)
+                callbackContext.success()
+                return true
+            } catch (e: JSONException) {
+                e.printStackTrace()
+                callbackContext.error("JSON Exception")
+                return false
+            }
         }
-        return false;
+        return false
     }
 
-	/*
-    private void coolMethod(String message, CallbackContext callbackContext) {
-        if (message != null && message.length() > 0) {
-            callbackContext.success(message);
-        } else {
-            callbackContext.error("Expected one non-empty string argument.");
-        }
+    private fun nativeToast(message: String, callbackContext: CallbackContext) {
+        Toast.makeText(webView.getContext(), message, Toast.LENGTH_SHORT).show()
     }
-	*/
-    public void nativeToast(String message, CallbackContext callbackContext){
-      Toast.makeText(
-                      webView.getContext(),
-                      message,
-                      Toast.LENGTH_SHORT)
-                      .show();
-   }
 
 }
 ```
 
-## 修改 www 底下的 HelloWorldPlugin.js
+## 修改 plugin.xml
+
+```
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-hello_world_k" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+	<name>HelloWorldKPlugin</name>
+	<js-module name="HelloWorldKPlugin" src="www/HelloWorldKPlugin.js">
+		<clobbers target="cordova.plugins.HelloWorldKPlugin"/>
+	</js-module>
+	<platform name="android">
+		<config-file parent="/*" target="res/xml/config.xml">
+    	<preference name="GradlePluginKotlinEnabled" value="true" />
+			<feature name="HelloWorldKPlugin">
+				<param name="android-package" value="cordova.plugin.hello_world_k.HelloWorldKPlugin"/>
+			</feature>
+		</config-file>
+		<config-file parent="/*" target="AndroidManifest.xml"/>
+		<source-file src="src/android/HelloWorldKPlugin.kt" target-dir="java/cordova/plugin/hello_world_k"/>
+	</platform>
+</plugin>
+```
+
+## 修改 www 底下的 HelloWorldKPlugin.js
 
 ```
 var exec = require('cordova/exec');
 /*
 // 這是原本產生的
 exports.coolMethod = function (arg0, success, error) {
-    exec(success, error, 'HelloWorldPlugin', 'coolMethod', [arg0]);
+    exec(success, error, 'HelloWorldKPlugin', 'coolMethod', [arg0]);
 };
 */
 
@@ -139,7 +113,7 @@ exports.nativeToast = function (arg0, success, error) {
 	 exec(
 		success,
 		error,
-	   'HelloWorldPlugin',
+	   'HelloWorldKPlugin',
 	   'nativeToast',
 		[arg0]
 		);
@@ -151,7 +125,7 @@ exports.nativeToast = function (arg0, success, error) {
 ```
 cd ./src/plugins/awesome-cordova-plugins
 
-gulp plugin:create -m -n HelloWorld
+gulp plugin:create -m -n HelloWorldK
 ```
 
 ### 修改 index.ts
@@ -162,16 +136,16 @@ import { Plugin, Cordova, CordovaProperty, CordovaInstance, InstanceProperty, Aw
 import { Observable } from 'rxjs';
 
 @Plugin({
-  pluginName: 'HelloWorldPlugin',
-  plugin: 'cordova-plugin-hello_world', // npm package name, example: cordova-plugin-camera
-  pluginRef: 'cordova.plugins.HelloWorldPlugin', // the variable reference to call the plugin, example: navigator.geolocation
-  repo: '', // the github repository URL for the plugin
-  install: '', // OPTIONAL install command, in case the plugin requires variables
-  installVariables: [], // OPTIONAL the plugin requires variables
-  platforms: ['Android'] // Array of platforms supported, example: ['Android', 'iOS']
+  pluginName: 'HelloWorldKPlugin',
+  plugin: 'cordova-plugin-hello_world_k',
+  pluginRef: 'cordova.plugin.HelloWorldKPlugin',
+  repo: '',
+  install: '',
+  installVariables: [],
+  platforms: ['Android']
 })
 @Injectable()
-export class HelloWorldPlugin extends AwesomeCordovaNativePlugin {
+export class HelloWorldKPlugin extends AwesomeCordovaNativePlugin {
 
   /**
    * This function does something
@@ -195,79 +169,10 @@ cd ./src/plugins/awesome-cordova-plugins
 npm run build
 
 //Copy the package(s) you created/modified to your app's node_modules under the @ionic-native directory.
-cp -R dist/@awesome-cordova-plugins/plugins/hello-world ../testApp/node_modules/@awesome-cordova-plugins/
+cp -R dist/@awesome-cordova-plugins/plugins/hello-world-k ../testApp/node_modules/@awesome-cordova-plugins/
 ```
 
-### 進入 dist 產生 package.json
-
-```
-cd ./dist/@awesome-cordova-plugins/plugins/hello-world
-npm init
-```
-
-```
-(base) yang:hello-world$ npm init
-This utility will walk you through creating a package.json file.
-It only covers the most common items, and tries to guess sensible defaults.
-
-See `npm help init` for definitive documentation on these fields
-and exactly what they do.
-
-Use `npm install <pkg>` afterwards to install a package and
-save it as a dependency in the package.json file.
-
-Press ^C at any time to quit.
-package name: (hello-world)
-version: (1.0.0)
-description:
-entry point: (index.js)
-test command:
-git repository:
-keywords:
-author:
-license: (ISC)
-About to write to /home/yang/App/github/ionic7_demo/src/plugins/awesome-cordova-plugins/dist/@awesome-cordova-plugins/plugins/hello-world/package.json:
-
-{
-  "name": "hello-world",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "types": "./index.d.ts"
-}
-
-
-Is this OK? (yes)
-```
-
-# 產生測試用的 App
-
-## 產生測試用的 ionic StandAlone Tabs 專案
-
-```
-cd ./src/plugins
-ionic start testApp tabs --type=angular --cordova
-```
-
-```
-? Would you like to build your app with NgModules or Standalone Components?
- Standalone components are a new way to build with Angular that simplifies the way you build your app.
- To learn more, visit the Angular docs:
- https://angular.io/guide/standalone-components
-
- (Use arrow keys)
-  NgModules
-❯ Standalone
-```
-
-```
-ionic cordova platform add android@12
-```
+# 測試用的 App
 
 ## 將 plugin 加到 App 中
 
@@ -275,16 +180,24 @@ ionic cordova platform add android@12
 
 ```
 cd ~/App/github/ionic7_demo/src/plugins/testApp
-ionic cordova plugin add ../HelloWorldPlugin
+cordova plugin add ../HelloWorldKPlugin --link
+( 或 ionic cordova plugin add ../HelloWorldKPlugin )
+
+
+
 npm install @awesome-cordova-plugins/core
-npm install ../awesome-cordova-plugins/dist/@awesome-cordova-plugins/plugins/hello-world
+
+上述的 cp 指令 
+cp -R dist/@awesome-cordova-plugins/plugins/hello-world-k ../testApp/node_modules/@awesome-cordova-plugins/
+( 或 npm install ../awesome-cordova-plugins/dist/@awesome-cordova-plugins/plugins/hello-world-k )
+
 ```
 
 #### 移除方式
 
 ```
-ionic cordova plugin rm cordova-plugin-hello_world
-npm uninstall hello-world
+ionic cordova plugin rm cordova-plugin-hello_world_k
+npm uninstall hello-world-k
 
 ```
 
@@ -293,16 +206,21 @@ npm uninstall hello-world
 #### main.ts
 
 ```
-import { HelloWorld } from 'hello-world/ngx';
+import { HelloWorldK } from 'hello-world-k/ngx';
 
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes),
-    HelloWorld
+    HelloWorldK
   ],
 });
+
+```
+
+#### tab1.ts
+```
 
 ```
 

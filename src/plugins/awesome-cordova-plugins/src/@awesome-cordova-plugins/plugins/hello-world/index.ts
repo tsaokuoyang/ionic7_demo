@@ -28,7 +28,7 @@ import { Observable } from 'rxjs';
  * ...
  *
  *
- * this.helloWorld.nativeToast('Hello', 123)
+ * this.helloWorld.nativeToast('Hello')
  *   .then((res: any) => console.log(res))
  *   .catch((error: any) => console.error(error));
  *
