@@ -19,7 +19,7 @@ package com.terryli.cordova;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.WorkerThread;
 import android.util.Log;
 import java.io.BufferedReader;
 import java.io.FileInputStream;

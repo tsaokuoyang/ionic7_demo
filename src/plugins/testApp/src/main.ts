@@ -8,6 +8,7 @@ import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 import { HelloWorldPlugin } from '@awesome-cordova-plugins/hello-world/ngx';
 import { HelloWorldKPlugin } from '@awesome-cordova-plugins/hello-world-k/ngx';
+import { TensorFlowLitePlugin } from '@awesome-cordova-plugins/tensorflow-lite/ngx';
 
 if (environment.production) {
   enableProdMode();
@@ -19,6 +20,7 @@ bootstrapApplication(AppComponent, {
     provideIonicAngular(),
     provideRouter(routes),
     HelloWorldPlugin,
-    HelloWorldKPlugin
+    HelloWorldKPlugin,
+    TensorFlowLitePlugin
   ],
 });

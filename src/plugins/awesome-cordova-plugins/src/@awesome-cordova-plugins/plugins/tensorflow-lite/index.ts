@@ -37,14 +37,14 @@ import { Observable } from 'rxjs';
 @Plugin({
   pluginName: 'TensorFlowLitePlugin',
   plugin: 'cordova-plugin-tensorflow-lite', // npm package name, example: cordova-plugin-camera
-  pluginRef: 'tensorflowLite', // the variable reference to call the plugin, example: navigator.geolocation
+  pluginRef: 'tensorflowlite', // the variable reference to call the plugin, example: navigator.geolocation
   repo: 'https://github.com/terryli0925/cordova-plugin-tensorflow-lite', // the github repository URL for the plugin
   install: 'ionic cordova plugin add https://github.com/terryli0925/cordova-plugin-tensorflow-lite', // OPTIONAL install command, in case the plugin requires variables
   installVariables: [], // OPTIONAL the plugin requires variables
   platforms: ['Android'] // Array of platforms supported, example: ['Android', 'iOS']
 })
 @Injectable()
-export class tensorflowLite extends AwesomeCordovaNativePlugin {
+export class TensorFlowLitePlugin extends AwesomeCordovaNativePlugin {
 
   /**
    * Load the TF Lite model, dictionary and labels.
@@ -63,7 +63,7 @@ export class tensorflowLite extends AwesomeCordovaNativePlugin {
   unLoad(): Promise<any> {
     return; // We add return; here to avoid any IDE / Compiler errors
   }
-  
+
   /**
    * Classify an input string and returns the classification results.
    * @return {Promise<any>} Returns a promise that resolves when something happens

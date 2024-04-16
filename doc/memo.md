@@ -9,3 +9,12 @@
 
 
 
+```
+cp -R dist/@awesome-cordova-plugins/plugins/hello-world ../testApp/node_modules/@awesome-cordova-plugins/
+cp -R dist/@awesome-cordova-plugins/plugins/hello-world-k ../testApp/node_modules/@awesome-cordova-plugins/
+cp -R dist/@awesome-cordova-plugins/plugins/tensorflow-lite ../testApp/node_modules/@awesome-cordova-plugins/
+
+cordova plugin add ../HelloWorldPlugin --link
+cordova plugin add ../HelloWorldKPlugin --link
+cordova plugin add ../cordova-plugin-tensorflow-lite --link
+```

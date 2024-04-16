@@ -9,11 +9,31 @@
 <ion-content [fullscreen]="true">
 
   <ion-grid>
-  <ion-row>
-    <ion-col offset="4" size="4"><ion-button (click)="toast()">Toast</ion-button></ion-col>
+    <ion-row>
+    <ion-col size="12"><ion-input label="測試內容" placeholder="輸入測試文字"
+        [(ngModel)]="txt" ngmodel></ion-input></ion-col>
   </ion-row>
   <ion-row>
-    <ion-col offset="4" size="4"><ion-button (click)="toastK()">Toast(Kotlin)</ion-button></ion-col>
+    <ion-col offset="1" size="3"><ion-button (click)="toast()">Toast</ion-button></ion-col>
+    <ion-col offset="1" size="4"><ion-button (click)="toastK()">Toast(Kotlin)</ion-button></ion-col>
+  </ion-row>
+  <ion-row><ion-col>&nbsp;</ion-col></ion-row>
+  <ion-row>
+    <ion-col offset="1" size="3"><ion-button  color="warning" (click)="tf_load()" [disabled]="tf_loaded">TF Load</ion-button></ion-col>
+    <ion-col offset="1" size="3"><ion-button  color="warning" (click)="tf_unload()" [disabled]="!tf_loaded">TF UnLoad</ion-button></ion-col>
+  </ion-row>
+  <ion-row><ion-col>&nbsp;</ion-col></ion-row>
+  <ion-row>
+    <ion-col offset="1" size="3"><ion-button  color="warning" (click)="tf_classify()" [disabled]="!tf_loaded">TF Classify</ion-button></ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-list>
+      <ion-item>
+        <ion-textarea label="分類內容">{{classified_txt}}</ion-textarea>
+      </ion-item>
+      </ion-list>
+    </ion-col>
   </ion-row>
 </ion-grid>
 

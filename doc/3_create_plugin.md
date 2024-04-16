@@ -86,9 +86,9 @@ gulp plugin:create -m -n tensorflowLite
 @Plugin({
   pluginName: 'TensorFlowLitePlugin',
   plugin: 'cordova-plugin-tensorflow-lite', // npm package name, example: cordova-plugin-camera
-  pluginRef: 'tensorflowLite', // the variable reference to call the plugin, example: navigator.geolocation
+  pluginRef: 'tensorflowlite', // the variable reference to call the plugin, example: navigator.geolocation
   repo: 'https://github.com/terryli0925/cordova-plugin-tensorflow-lite', // the github repository URL for the plugin
-  install: 'ionic cordova plugin add cordova-plugin-tensorflow-lite', // OPTIONAL install command, in case the plugin requires variables
+  install: 'ionic cordova plugin add https://github.com/terryli0925/cordova-plugin-tensorflow-lite', // OPTIONAL install command, in case the plugin requires variables
   installVariables: [], // OPTIONAL the plugin requires variables
   platforms: ['Android'] // Array of platforms supported, example: ['Android', 'iOS']
 })
@@ -171,12 +171,14 @@ ionic cordova platform add android@12
 ### 安裝剛剛產生的 ionic plugin api 部分
 
 產生 package.json:
+
 ```
 cd ../awesome-cordova-plugins/dist/@awesome-cordova-plugins/plugins/tensorflow-lite
 npm init
 ```
 
 安裝到 App 中
+
 ```
 cd ~/App/github/ionic7_demo/src/plugins/testApp
 npm install ../awesome-cordova-plugins/dist/@awesome-cordova-plugins/plugins/tensorflow-lite

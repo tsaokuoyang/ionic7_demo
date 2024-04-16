@@ -20,7 +20,7 @@ import { AwesomeCordovaNativePlugin } from '@awesome-cordova-plugins/core';
  *
  * ```
  */
-export declare class tensorflowLite extends AwesomeCordovaNativePlugin {
+export declare class TensorFlowLitePlugin extends AwesomeCordovaNativePlugin {
     /**
      * Load the TF Lite model, dictionary and labels.
      * @return {Promise<any>} Returns a promise that resolves when something happens

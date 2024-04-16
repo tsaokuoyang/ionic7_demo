@@ -1,6 +1,8 @@
+var exec = require('cordova/exec');
+
 module.exports = {
   load: function (successCallback, errorCallback) {
-    cordova.exec(
+    exec(
       successCallback,
       errorCallback,
       'TensorFlowLitePlugin',
@@ -9,7 +11,7 @@ module.exports = {
     );
   },
   unLoad: function (successCallback, errorCallback) {
-    cordova.exec(
+    exec(
       successCallback,
       errorCallback,
       'TensorFlowLitePlugin',
@@ -18,7 +20,7 @@ module.exports = {
     );
   },
   classify: function (text, successCallback, errorCallback) {
-    cordova.exec(
+    exec(
       successCallback,
       errorCallback,
       'TensorFlowLitePlugin',
