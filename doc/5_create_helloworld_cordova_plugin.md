@@ -216,18 +216,18 @@ cd ./src/plugins/awesome-cordova-plugins
 npm run build
 
 //Copy the package(s) you created/modified to your app's node_modules under the @ionic-native directory.
-cp -R dist/@awesome-cordova-plugins/plugins/hello-world ../testApp/node_modules/@awesome-cordova-plugins/
+cp -R dist/@awesome-cordova-plugins/plugins/hello-world-plugin ../testApp/node_modules/@awesome-cordova-plugins/
 ```
 
 ### 進入 dist 產生 package.json
 
 ```
-cd ./dist/@awesome-cordova-plugins/plugins/hello-world
+cd ./dist/@awesome-cordova-plugins/plugins/hello-world-plugin
 npm init
 ```
 
 ```
-(base) yang:hello-world$ npm init
+(base) yang:hello-world-plugin$ npm init
 This utility will walk you through creating a package.json file.
 It only covers the most common items, and tries to guess sensible defaults.
 
@@ -238,7 +238,7 @@ Use `npm install <pkg>` afterwards to install a package and
 save it as a dependency in the package.json file.
 
 Press ^C at any time to quit.
-package name: (hello-world)
+package name: (hello-world-plugin)
 version: (1.0.0)
 description:
 entry point: (index.js)
@@ -250,7 +250,7 @@ license: (ISC)
 About to write to /home/yang/App/github/ionic7_demo/src/plugins/awesome-cordova-plugins/dist/@awesome-cordova-plugins/plugins/hello-world/package.json:
 
 {
-  "name": "hello-world",
+  "name": "hello-world-plugin",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -298,14 +298,14 @@ ionic cordova platform add android@12
 cd ~/App/github/ionic7_demo/src/plugins/testApp
 ionic cordova plugin add ../HelloWorldPlugin
 npm install @awesome-cordova-plugins/core
-npm install ../awesome-cordova-plugins/dist/@awesome-cordova-plugins/plugins/hello-world
+npm install ../awesome-cordova-plugins/dist/@awesome-cordova-plugins/plugins/hello-world-plugin
 ```
 
 #### 移除方式
 
 ```
 ionic cordova plugin rm cordova-plugin-hello_world
-npm uninstall hello-world
+npm uninstall hello-world-plugin
 
 ```
 
@@ -314,14 +314,14 @@ npm uninstall hello-world
 #### main.ts
 
 ```
-import { HelloWorld } from 'hello-world/ngx';
+import { HelloWorldPlugin } from '@awesome-cordova-plugins/hello-world-plugin/ngx';
 
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes),
-    HelloWorld
+    HelloWorldPlugin
   ],
 });
 

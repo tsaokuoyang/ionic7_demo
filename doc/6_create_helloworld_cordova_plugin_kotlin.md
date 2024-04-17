@@ -227,14 +227,14 @@ npm uninstall hello-world-k
 #### main.ts
 
 ```
-import { HelloWorldK } from 'hello-world-k/ngx';
+import { HelloWorldKPlugin } from '@awesome-cordova-plugins/hello-world-k/ngx';
 
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes),
-    HelloWorldK
+    HelloWorldKPlugin
   ],
 });
 
