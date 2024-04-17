@@ -172,7 +172,7 @@ sudo npm install -g gulp-cli
 ```
 
 ```
-gulp plugin:create -m -n HelloWorld
+gulp plugin:create -m -n HelloWorldPlugin
 ```
 
 ### 修改 index.ts

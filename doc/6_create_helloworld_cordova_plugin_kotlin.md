@@ -146,7 +146,7 @@ sudo npm install -g gulp-cli
 ```
 
 ```
-gulp plugin:create -m -n HelloWorldK
+gulp plugin:create -m -n HelloWorldKPlugin
 ```
 
 ### 修改 index.ts
@@ -208,7 +208,7 @@ cordova plugin add ../HelloWorldKPlugin --link
 
 npm install @awesome-cordova-plugins/core
 
-上述的 cp 指令 
+上述的 cp 指令
 cp -R dist/@awesome-cordova-plugins/plugins/hello-world-k ../testApp/node_modules/@awesome-cordova-plugins/
 ( 或 npm install ../awesome-cordova-plugins/dist/@awesome-cordova-plugins/plugins/hello-world-k )
 
@@ -241,6 +241,7 @@ bootstrapApplication(AppComponent, {
 ```
 
 #### tab1.ts
+
 ```
 
 ```
