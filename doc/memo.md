@@ -8,6 +8,8 @@
 [Android Plugin Development Guide](https://cordova.apache.org/docs/en/latest/guide/platforms/android/plugin.html)
 
 
+[How to return data from activity to Cordova plugin](https://stackoverflow.com/questions/27898617/how-to-return-data-from-activity-to-cordova-plugin)
+
 
 ```
 cp -R dist/@awesome-cordova-plugins/plugins/hello-world ../testApp/node_modules/@awesome-cordova-plugins/

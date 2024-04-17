@@ -1,6 +1,7 @@
 # Ionic plugin js 部分開發
 
 參考文件: [Awesome Cordova Plugins](https://github.com/danielsogl/awesome-cordova-plugins/blob/master/README.md)
+[Ionic Native Developer Guide](https://github.com/ionic-team/ionic-native-google-maps/blob/master/DEVELOPER.md)
 前身為 @ionic-native
 
 ## git 複製 awesome-cordova-plugins
