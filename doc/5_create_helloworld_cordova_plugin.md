@@ -327,6 +327,37 @@ bootstrapApplication(AppComponent, {
 
 ```
 
+#### tab1.ts
+
+```
+import { HelloWorldPlugin } from '@awesome-cordova-plugins/hello-world-plugin/ngx';
+
+export class Tab1Page {
+  constructor(private hw: HelloWorldPlugin) { }
+
+  toast() {
+    this.hw.nativeToast("測試123");
+  }
+}
+
+```
+
+#### tab1.page.html
+
+```
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Tab 1
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+<ion-button (click)="toast()">Test</ion-button>
+</ion-content>
+```
+
 # Cordov Plugin 官網說明
 
 官網: [Create a Plugin](https://cordova.apache.org/docs/en/12.x/guide/hybrid/plugins/index.html)
